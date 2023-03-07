@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "6404fd6d92853967e8c78323"
+  },
+  "id": 13.127591071439415,
+  "name": "sales member 1",
+  "email": "sales1@solar.com",
+  "password": "$2b$10$gIyjvF3yfQtkt0SpL1.EnOt0ovHiSSp2Aaz7dKs7hYHlwNM3.otwy",
+  "type": "sales"
+},{
+  "_id": {
+    "$oid": "6404fd6d92853967e8c78324"
+  },
+  "id": 64.10064100905456,
+  "name": "sales member 2",
+  "email": "sales2@solar.com",
+  "password": "$2b$10$.tv8Pdla5CZamRwuSNz2dOop9K01.JjcEc3H4DNQ9aOm5/LGtKZJK",
+  "type": "sales"
+},{
+  "_id": {
+    "$oid": "64065fc5cb1dadc8f243a7f5"
+  },
+  "id": 15.769900552939987,
+  "name": "Daksh",
+  "email": "daksh95@gmail.com",
+  "password": "$2b$10$tfOEXSsGbsZFzbINyMeELOMhtbtTh0WMDAJcJvfjwZ3r5b2NYg.Y.",
+  "type": "engineer"
+},{
+  "_id": {
+    "$oid": "640662bffb5bcdd8be16eeec"
+  },
+  "id": 29.42904313493695,
+  "name": "Yash",
+  "email": "ybhut@solar.com",
+  "password": "$2b$10$pZhxsEgFCsrkCC5DKK1j7e4C/nGMhC2FDvbqnPO6sl/HiJ318MPxG",
+  "type": "customer"
+},{
+  "_id": {
+    "$oid": "640662d6fb5bcdd8be16eeed"
+  },
+  "id": 19.387870100458816,
+  "name": "Atul",
+  "email": "atulgupta@solar.com",
+  "password": "$2b$10$ie.0dAv.faAvwv7TqNpaneaUeptVf2feuY.WSPTrV3cJhfR.1vm3.",
+  "type": "manager"
+},{
+  "_id": {
+    "$oid": "64067870e6214c945ca16aa4"
+  },
+  "id": 58.93412170771939,
+  "name": "Shrey",
+  "email": "shrey@solar.com",
+  "password": "$2b$10$pgAxSwDGNHLIxBGv55qcVOG9VVml6pt2jLxYFz/W0VNPslYeXaEsG",
+  "type": "customer"
+}]

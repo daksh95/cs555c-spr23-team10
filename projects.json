@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "63f8521309238c3d2f432596"
+  },
+  "name": "yash",
+  "customer": "640662bffb5bcdd8be16eeec",
+  "description": "yoyo",
+  "address": "lakjsdfhkas",
+  "status": "asdkfjashdlfkja"
+},{
+  "_id": {
+    "$oid": "640680667214deec243c0dda"
+  },
+  "name": "My First Solar Project",
+  "description": "This is a test solar project",
+  "customer": "640662bffb5bcdd8be16eeec",
+  "status": "Pending"
+}]
