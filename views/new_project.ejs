@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="css/new_project.css">
+<script type="module" src="scripts/fetch_cust.js" defer></script>
+<body class="body">
+    <div class="flexing">
+        <div class="headers">
+            <center>
+                <h1 class="teamlogo">Scrum Lords</h1>
+            </center>
+            <center>
+                <h1 class="logo">Project Solar</h1>
+            </center>
+        </div>
+        <div class="projectbox">
+            <h1>Create New Project </h1>
+            <form action="/createproject" method="POST">
+                <div style="width: 80%; padding: 10px;">
+                    <label for="name">Project Name</label>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <input type="text" id="name" name="name" placeholder="Your Project name" required>
+                </div>
+                <div style="width: 80%; padding: 20px;">
+                    <label for="description">Description</label><br>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <input type="text" id="description" name="description" placeholder="Your description" required>
+                </div>
+                <div style="width: 80%; padding: 20px;">
+                    <label for="customer">Customer</label><br>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <select name="customer" id="customer-dropdown">
+                        <option value="none" selected disabled hidden>Select a customer</option>
+                    </select>
+                </div>
+                <div style="width: 80%; padding: 20px;">
+                    <label for="status">Status</label><br>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <input type="text" id="status" name="status" placeholder="Your status" required>
+                </div>
+                <br>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+</body>
