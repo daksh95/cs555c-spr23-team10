@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.boddy{
+    background-color: #000000;
+    font-family: Roboto;
+    color: white;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.header button{
+    padding: 10px;
+    background-color: #1e1e1e;
+    width: 150px;
+    color: white;
+    border-radius: 15px;
+    font-size: 20px;
+    border-color: white;
+}
+
+.second{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.second button{
+    padding: 10px;
+    background-color: #757575;
+    width: 150px;
+    color: white;
+    border-radius: 15px;
+    font-size: 20px;
+    border-color: white;
+}
+
+.project{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px;
+    background-color: #1e1e1e;
+    border-color: white;
+    border-radius: 10px;
+    border: 2px solid;
+    margin-bottom: 30px;
+}
+
+.project button{
+    padding: 10px;
+    background-color: #757575;
+    width: 150px;
+    color: white;
+    border-radius: 15px;
+    font-size: 20px;
+    border-color: white;
+}
+
+.second form input{
+    margin-top: 10px;
+    width: 300px;
+    height: 45px;
+    background-color: #e8e8e8;
+    color: black;
+    font-size: 15px;
+    border-radius: 10px;
+}
