@@ -24,3 +24,4 @@ fetch('http://localhost:6969/projects')
       projectContainer.appendChild(projectDiv);
     }
   });
+

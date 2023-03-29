@@ -1,12 +1,11 @@
 import {dbConnection,closeConnection}from '../config/mongoConnection.js';
-import { ObjectId } from 'mongodb';
 import projects from '../config/mongoCollections.js';
-import users from './users.js'
+import { ObjectId } from 'mongodb';
 
-export default async function main(ob){
-    // console.log(ob)
+
+export default async function namechange(id,name){
     const db = await dbConnection();
     const projectcollection = await projects()
-    let project = await projectcollection.insertOne(ob);
-    return project
+    let success = await projectcollection.findOneAndUpdate({_id: new ObjectId(id)},{$set:{name:name}})
+    return success
 }
