@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="css/view_project.css">
+<script src="scripts/vp_eng.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<body class="body">
+    <center><h1>Solar Project</h1></center>
+<div class="bruh">
+    <h1>Project Name :</h1>
+    <h2><%= name %></h2>
+</div>
+<div class="bruh">
+    <h1>Project Status :</h1>
+    <h2><%= status %></h2>
+</div>
+<div class="bruh">
+    <h1>Project Notes :</h1>
+    <h2><%= description %></h2>
+    <button type="button" onclick="displaydescription()">Edit</button>
+    <form action="/pdescriptionchangeeng" method="POST">
+        <input type="hidden" name="id" value=<%=_id%>>
+        <input name="description" type="text" style="display:none; margin-left: 20px; width: 200px;" class="desc" placeholder="enter new description here" required>
+        <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="descriptionr">Update</button>
+    </form>
+</div>
+<div class="bruh">
+    <h1>Project id :</h1>
+    <h2><%= _id %></h2>
+</div>
+<div class="bruh">
+    <h1>Customer Name :</h1>
+    <h2><%= customerName %></h2>
+</div>
+<div class="bruh">
+    <h1>Customer Email :</h1>
+    <h2><%= customerEmail %></h2>
+</div>
+<div class="bruh">
+    <h1>Customer Phone # :</h1>
+    <h2><%= phone %></h2>
+</div>
+<div class="bruh">
+    <h1>Property Address: </h1>
+    <h2><%= propertyAddress %></h2>
+</div>
+<div class="bruh">
+    <h1>Project Size: </h1>
+    <h2><%= projectSize %> sqft</h2>
+</div>
+<div class="bruh">
+    <h2></h2>
+</div>
+<div class="bruh">
+    <form id = "theImageForm" action="/uploadpictures" method="POST" enctype="multipart/form-data">
+        <input type="file" name="projectUpdate" multiple>
+        <input type="hidden" name="projectid" value=<%=_id%>>
+        <input type="submit">
+    </form>
+</div>
+</body>

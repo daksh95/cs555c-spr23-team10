@@ -1,0 +1,27 @@
+<h1>My App</h1>
+<h1>Register</h1>
+<form action="/register" method="POST">
+<div>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+</div>
+<div>
+    <label for="email">E Mail</label>
+    <input type="text" id="email" name="email" required>
+</div>
+<div>
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password" required>
+</div>
+<div>
+    <label for="user_type">User Type</label>
+    <select name="user_type" id="user_type">
+        <option value="sales">Sales</option>
+        <option value="engineer">Engineer</option>
+        <option value="manager">Manager</option>
+        <option value="customer">Customer</option>
+    </select>
+</div>
+<button type="submit" >Register</button>
+</form>
+<a href="/login">Login</a>
