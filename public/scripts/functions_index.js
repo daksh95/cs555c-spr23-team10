@@ -28,7 +28,7 @@ fetch('http://localhost:6969/projects')
             <!-- <p>address: ${project.customerAddress}</p> -->
             <p>customer: ${project.customerName} - ${project.customer}</p>
             </div>
-            <div>
+            <div class="bebe">
             <h2>Status: ${project.status}</h2>
             <form action="/getproject" method="POST">
             <input type="hidden" name="id" value=${project._id}>
