@@ -61,6 +61,10 @@ initializepassport(
     id => users.find(user => user.id === id)
 )
 
+app.get('/',checknotauthenticated,(req,res)=>{
+    res.render("landing.ejs")
+})
+
 app.get("/mlogin",checknotauthenticated,(req,res)=>{
     res.render("login_manager.ejs")
 })
@@ -75,7 +79,7 @@ app.get('/manager',checkauthenticated,(req,res)=>{
     res.render('managerindex.ejs', { name: req.user.name })
 })
 
-app.get('/', checkauthenticated, (req, res) => {
+app.get('/dashboard', checkauthenticated, (req, res) => {
     res.render('salesindex.ejs', { name: req.user.name })
 })
 
@@ -84,7 +88,7 @@ app.get('/saleslogin', checknotauthenticated, (req, res) => {
 })
 
 app.post('/saleslogin', checknotauthenticated,passport.authenticate('sales',{
-    successRedirect: '/',
+    successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true
 }))
@@ -176,32 +180,32 @@ app.get("/newproject", checkauthenticated, (req, res) => {
 app.post('/createproject', checkauthenticated, async (req, res) => {
     console.log(req.body)
     let success = await create_project(req.body)
-    res.redirect("/");
+    res.redirect("/dashboard");
 })
 
 app.post('/deleteproject', checkauthenticated, async (req, res) => {
     let s = await delete_project(req.body.id)
-    res.redirect("/")
+    res.redirect("/dashboard")
 })
 
 app.post('/pnamechange', checkauthenticated, async (req, res) => {
     let a = await namechange(req.body.id,req.body.name)
     if (a !== null){
-        res.redirect("/")
+        res.redirect("/dashboard")
     }
 })
 
 app.post('/pstatuschange', checkauthenticated, async (req, res) => {
     let a = await statuschange(req.body.id,req.body.status)
     if (a !== null){
-        res.redirect("/")
+        res.redirect("/dashboard")
     }
 })
 
 app.post('/pdescriptionchange', checkauthenticated, async (req, res) => {
     let a = await descriptionchange(req.body.id,req.body.description)
     if (a !== null){
-        res.redirect("/")
+        res.redirect("/dashboard")
     }
 })
 
