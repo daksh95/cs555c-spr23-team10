@@ -1,14 +1,24 @@
-.b-example-divider {
+/* .b-example-divider {
   height: 3rem;
   background-color: rgba(0, 0, 0, .1);
   border: solid rgba(0, 0, 0, .15);
   border-width: 1px 0;
   box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+} */
+body{
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;
 }
 
-.bi {
-  vertical-align: -.125em;
-  fill: currentColor;
+.nav{
+  background-color: #283149;
+  text-decoration: #fff;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+.solutions{
+  background-color:  rgba(255, 191, 0, 0.428);
+  box-shadow: 10px 10px 5px rgba(128, 53, 0, 0.864);
+  font-family: serif;
+  border-radius: 50px 50px 50px 50px;
 }
 
 .feature-icon {
@@ -58,4 +68,9 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+
+.footer{
+  padding-top: 100px !important;
 }

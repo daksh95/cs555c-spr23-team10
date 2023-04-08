@@ -4,6 +4,25 @@
     padding: 0;
 }
 
+.home {
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+main{
+    animation: fadeInAnimation ease 2s;
+}
+
 .splash{
     position:fixed;
     padding:0;
@@ -14,11 +33,11 @@
     
     height:100%;
     width:100%;
-    background-color: black;
+    background-color: white;
     z-index: 200;
     line-height: 90vh;
     text-align: center;
-    color: white;
+    color: black;
     line-height: 90vh;
 }
 
@@ -27,7 +46,7 @@
 .splash.display-none{
     position : absolute;
     opacity: 0;
-    top: 0;
+    top: 100%;
     left:0;
     width:auto;
     height: 100vh;
@@ -36,6 +55,7 @@
     color: white;
     text-align: center;
     line-height: 90vh;
+    /* transition: all 0.5s; */
 }
 @keyframes fadeIn{
     to{
@@ -47,5 +67,5 @@
 .fade-in{
     opacity: 0;
     animation: fadeIn 2s ease-in forwards;
-    align-items: center;
+    
 }
