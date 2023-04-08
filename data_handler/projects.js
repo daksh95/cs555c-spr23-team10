@@ -12,6 +12,5 @@ export default async function main(){
         projectslist[i].customerName = user.name;
         // projectslist[i].customerAddress = user.address;
     }
-
     return projectslist
 }

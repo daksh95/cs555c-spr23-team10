@@ -1,0 +1,26 @@
+<head>   
+    <link rel="stylesheet" href="css/sales_page.css">
+    <!-- <script type="module" src="scripts/generator.js" defer></script> -->
+</head>
+
+<body class="boddy">
+    <div class="header">
+        <h1>Welcome <%= name.toUpperCase() %>
+        </h1>
+        <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit">Log out</button>
+        </form>
+    </div>
+    <hr style="content: ''; height: 5px; background-color: white;">
+    <div class="second">
+        <h1>Projects :</h1>
+        <form>
+            <input type="text" name="" id="search-project" placeholder="Search Projects">
+            <button type="button" onclick="search()">Search</button>
+            <button type="button"><a style="text-decoration:none; color:white;" href="./">Reset</a></button>
+        </form>
+    </div>
+    <div id="project-container">
+    </div>
+    <script src="scripts/functions_index_eng.js"></script>
+</body>
