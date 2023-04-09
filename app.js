@@ -24,7 +24,7 @@ dotenv.config();
 
 const multerStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/')
+        cb(null, 'public/uploads/')
     },
     filename: (req, file, cb) => {
         const ext = file.mimetype.split("/")[1];
@@ -170,6 +170,7 @@ app.post('/getprojecteng', checkauthenticated, async (req, res) => {
     d.customerName = user.name;
     d.customerEmail = user.email
     d.phone = user.phone
+    if (!d.hasOwnProperty("images")) d.images = false;
     res.render('view_project_eng.ejs', d)
 })
 
@@ -221,7 +222,7 @@ app.post('/uploadpictures', checkauthenticated, upload.array('projectUpdate'), a
     const projectId = req.body.projectid;
     let a = await uploadpictures(projectId, fileArr);
     if (a !== null) {
-        res.redirect()
+        res.redirect("/eng")
     }
 })
 
