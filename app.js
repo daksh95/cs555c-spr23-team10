@@ -61,37 +61,68 @@ initializepassport(
     id => users.find(user => user.id === id)
 )
 
+// landing end point
 app.get('/',checknotauthenticated,(req,res)=>{
     res.render("landing.ejs")
+})
+
+// Login end points
+app.get("/login",checknotauthenticated,(req,res)=>{
+    res.render("login_customer.ejs")
 })
 
 app.get("/mlogin",checknotauthenticated,(req,res)=>{
     res.render("login_manager.ejs")
 })
 
-app.post('/managerlogin', checknotauthenticated,passport.authenticate('manager',{
-    successRedirect: '/manager',
-    failureRedirect: '/login',
-    failureFlash: true
-}))
-
-app.get('/manager',checkauthenticated,(req,res)=>{
-    res.render('managerindex.ejs', { name: req.user.name })
-})
-
-app.get('/dashboard', checkauthenticated, (req, res) => {
-    res.render('salesindex.ejs', { name: req.user.name })
-})
-
 app.get('/saleslogin', checknotauthenticated, (req, res) => {
     res.render('login_sales.ejs')
 })
 
-app.post('/saleslogin', checknotauthenticated,passport.authenticate('sales',{
-    successRedirect: '/dashboard',
+app.get('/englogin',checknotauthenticated,(req,res)=>{
+    res.render('login_eng.ejs')
+})
+
+// Login post end points
+app.post('/login', checknotauthenticated,passport.authenticate('customer',{
+    successRedirect: '/home',
     failureRedirect: '/login',
     failureFlash: true
 }))
+
+app.post('/managerlogin', checknotauthenticated,passport.authenticate('manager',{
+    successRedirect: '/home',
+    failureRedirect: '/mlogin',
+    failureFlash: true
+}))
+
+app.post('/saleslogin', checknotauthenticated,passport.authenticate('sales',{
+    successRedirect: '/home',
+    failureRedirect: '/saleslogin',
+    failureFlash: true
+}))
+
+app.post('/englogin', checknotauthenticated,passport.authenticate('eng',{
+    successRedirect: '/home',
+    failureRedirect: '/englogin',
+    failureFlash: true
+}))
+
+// success redirect 
+app.get('/home',checkauthenticated,(req,res)=>{
+    if (req.user.type === "customer") {
+        return res.render('customerindex.ejs', { name: req.user.name })
+    }  
+    if (req.user.type === "manager"){
+        return res.render('managerindex.ejs', { name: req.user.name })
+    }
+    if (req.user.type === "sales"){
+        return res.render('salesindex.ejs', { name: req.user.name })
+    }
+    if (req.user.type === "engineer"){
+    res.render('engindex.ejs',{ name: req.user.name })
+    }
+})
 
 app.get('/register', checknotauthenticated, (req, res) => {
     res.render('register.ejs')
@@ -117,8 +148,18 @@ app.post('/register', checknotauthenticated, async (req, res) => {
 })
 
 app.get('/projects', checkauthenticated, async (req, res) => {
-    let projectslist = await projectsgetter()
-    res.json(projectslist)
+    if(req.user.type === "customer"){
+        const c = req.user._id.toString()
+        let projectslist = await projectsgetter()
+        const data = projectslist.filter(project =>{
+            return project.customer === c
+        })
+        res.json(data)    
+    }
+    else{
+        let projectslist = await projectsgetter()
+        res.json(projectslist)
+    }
 });
 
 app.get('/customers', checkauthenticated, async (req, res) => {
@@ -134,7 +175,7 @@ app.delete('/logout', (req, res) => {
                     return next(err);
                 }
             })
-        return res.redirect('/saleslogin')
+        return res.redirect('/')
     }
     if (req.user.type === "engineer") {
         req.logOut(
@@ -143,7 +184,7 @@ app.delete('/logout', (req, res) => {
                     return next(err);
                 }
             })
-        return res.redirect('/englogin')} 
+        return res.redirect('/')} 
     if (req.user.type === "manager") {
         req.logOut(
             function (err) {
@@ -151,7 +192,15 @@ app.delete('/logout', (req, res) => {
                     return next(err);
                 }
             })
-        return res.redirect('/mlogin')} 
+        return res.redirect('/')} 
+        if (req.user.type === "customer") {
+            req.logOut(
+                function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                })
+            return res.redirect('/')} 
 })
 
 app.post('/getproject', checkauthenticated, async (req, res) => {
@@ -172,6 +221,16 @@ app.post('/getprojecteng', checkauthenticated, async (req, res) => {
     d.phone = user.phone
     if (!d.hasOwnProperty("images")) d.images = false;
     res.render('view_project_eng.ejs', d)
+})
+
+app.post('/getprojectcus', checkauthenticated, async (req, res) => {
+    let d = await get_project(req.body.id)
+    const user = users.find(user => user._id.toString() === d.customer)
+    d.customerName = user.name;
+    d.customerEmail = user.email
+    d.phone = user.phone
+    if (!d.hasOwnProperty("images")) d.images = false;
+    res.render('view_project_customer.ejs', d)
 })
 
 app.get("/newproject", checkauthenticated, (req, res) => {
@@ -222,35 +281,20 @@ app.post('/uploadpictures', checkauthenticated, upload.array('projectUpdate'), a
     const projectId = req.body.projectid;
     let a = await uploadpictures(projectId, fileArr);
     if (a !== null) {
-        res.redirect("/eng")
+        res.redirect("/home")
     }
 })
-
-app.get('/eng',checkauthenticated,(req,res)=>{
-    res.render('engindex.ejs',{ name: req.user.name })
-})
-
-app.get('/englogin',checknotauthenticated,(req,res)=>{
-    res.render('login_eng.ejs')
-})
-
-app.post('/englogin', checknotauthenticated,passport.authenticate('eng',{
-    successRedirect: '/eng',
-    failureRedirect: '/englogin',
-    failureFlash: true
-}))
 
 function checkauthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
     }
-    if (req.user.type === "sales") {return res.redirect('/saleslogin')}
-    if (req.user.type === "engineer") {return res.redirect('/englogin')} 
+    return res.redirect('/')
 }
+
 function checknotauthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        if (req.user.type === "sales") {return res.redirect('/')}
-        if (req.user.type === "engineer") {return res.redirect('/eng')} 
+        return res.redirect('/home')
     }
     next()
 }
