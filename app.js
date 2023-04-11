@@ -209,7 +209,7 @@ app.post('/getproject', checkauthenticated, async (req, res) => {
     d.customerName = user.name;
     d.customerEmail = user.email
     d.phone = user.phone
-    d.images = user.images
+    if (!d.hasOwnProperty("images")) d.images = false;
     res.render('view_project.ejs', d)
 })
 
