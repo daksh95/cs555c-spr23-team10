@@ -57,6 +57,13 @@
     <h1>Project Size: </h1>
     <h2><%= projectSize %> sqft</h2>
 </div>
+<div class="bruh">
+    <% if(images) { %>
+        <% for (let i = 0; i < images.length; i++) { %>
+        <img src="<%= images[i] %>" alt="<%= images[i] %>" width="200" height="200">
+        <% } %>
+    <% } %>
+</div>
 <form action="/deleteproject" method="POST">
     <input type="hidden" name="id" value=<%=_id%>>
     <button type="submit">Delete</button>
