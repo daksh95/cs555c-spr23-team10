@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="css/login_sales.css">
+
+<body class="body">
+    <div class="flexing">
+        <div class="headers">
+            <center>
+                <h1 class="teamlogo">Scrum Lords</h1>
+            </center>
+            <center>
+                <h1 class="logo">Project Solar</h1>
+            </center>
+        </div>
+        <div class="loginbox">
+            <h1>Customer Login Page </h1>
+            <form action="/login" method="POST">
+                <div style="width: 80%; padding: 10px;">
+                    <label for="email">Your E Mail</label>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <input type="text" id="email" name="email" placeholder="Your Registered email" required>
+                </div>
+                <div style="width: 80%; padding: 20px;">
+                    <label for="password">Your Password</label><br>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <input type="text" id="password" name="password" placeholder="Your password" required>
+                </div>
+                <% if (messages.error){%>
+                    <%= messages.error %>
+                        <% } %>
+                <br>
+                <button type="submit">Login</button>
+            </form>
+            <!-- <a href="/register">Register</a> -->
+        </div>
+    </div>
+</body>

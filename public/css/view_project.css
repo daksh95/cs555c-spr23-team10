@@ -47,3 +47,11 @@
     font-weight: bold;
     border-color: white;
 }
+
+.bruh img {
+    height: 200px;
+    margin-left: 40px;
+    border: 2px;
+    border-color: white;
+    border-style: solid;
+}

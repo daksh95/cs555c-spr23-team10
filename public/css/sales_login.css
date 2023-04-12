@@ -1,0 +1,21 @@
+body {
+    background-color: #D7E5F0;
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Raleway', sans-serif;
+}
+
+#navbar {
+    background-color: black;
+}
+
+#login-icon {
+    margin-right: 1em;
+}
+
+#login-header {
+    color: black;
+}
+
+.form-text {
+    color: black;
+}

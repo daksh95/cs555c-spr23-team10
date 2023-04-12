@@ -49,6 +49,7 @@
 } */
 .cover-container {
   max-width: 100em;
+  background-image: url("img/homebg.jpeg");
   
 }
 .about-container {
