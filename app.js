@@ -63,7 +63,7 @@ initializepassport(
 
 // landing end point
 app.get('/',checknotauthenticated,(req,res)=>{
-    res.render("landing.ejs")
+    res.render("home.ejs")
 })
 
 // Login end points
