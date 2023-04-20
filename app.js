@@ -18,6 +18,12 @@ import namechange from './data_handler/changen_p.js';
 import statuschange from './data_handler/changes_p.js';
 import descriptionchange from './data_handler/changed_p.js';
 import uploadpictures from './data_handler/upload_picture.js';
+import get_chat from './data_handler/chat.js';
+import get_chat1 from './data_handler/chat_1.js';
+import add_chat from './data_handler/msg.js';
+import add_chat1 from './data_handler/msg_1.js';
+import get_msg from './data_handler/last_msg.js';
+import get_msg_s from './data_handler/last_msg_s.js';
 
 
 dotenv.config();
@@ -44,6 +50,7 @@ const upload = multer( {storage: multerStorage, fileFilter: multerFilter });
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(flash());
 app.use(methodoverride('_method'));
 app.use(express.static("public"));
@@ -125,7 +132,7 @@ app.get('/home',checkauthenticated,(req,res)=>{
 })
 
 app.get('/register', checknotauthenticated, (req, res) => {
-    res.render('register.ejs')
+        return res.render('register.ejs')
 })
 
 app.post('/register', checknotauthenticated, async (req, res) => {
@@ -144,6 +151,47 @@ app.post('/register', checknotauthenticated, async (req, res) => {
     catch {
         res.redirect("/register")
         console.log("error while hashing")
+    }
+})
+
+app.get('/support',checkauthenticated,async (req,res)=>{
+    if (req.user.type === "customer") {
+    let dd = await get_chat(req.user._id.toString())
+    res.render('support.ejs',dd)
+    }
+    if(req.user.type === "sales"){
+        let dd = await get_chat1(req.user._id.toString())
+        res.render('support_s.ejs',dd)
+    }
+})
+
+app.post("/cs",checkauthenticated,async (req,res)=>{
+    await add_chat(req.user._id.toString(),req.body.msg)
+    res.sendStatus(200)
+})
+
+app.post("/ss",checkauthenticated,async (req,res)=>{
+    await add_chat1(req.user._id.toString(),req.body.msg)
+    res.sendStatus(200)
+})
+
+app.post("/checkmsg",checkauthenticated,async(req,res)=>{
+    let l = await get_msg(req.user._id.toString())
+    if (l.slice(-1)[0].split("-")[1] === req.body.last_msg){
+        return res.sendStatus(400)
+    }
+    else{
+        return res.sendStatus(200)
+    }
+})
+
+app.post("/checkmsgg",checkauthenticated,async(req,res)=>{
+    let l = await get_msg_s(req.user._id.toString())
+    if (l.slice(-1)[0].split("-")[1] === req.body.last_msg){
+        return res.sendStatus(400)
+    }
+    else{
+        return res.sendStatus(200)
     }
 })
 
@@ -238,7 +286,6 @@ app.get("/newproject", checkauthenticated, (req, res) => {
 })
 
 app.post('/createproject', checkauthenticated, async (req, res) => {
-    console.log(req.body)
     let success = await create_project(req.body)
     res.redirect("/dashboard");
 })

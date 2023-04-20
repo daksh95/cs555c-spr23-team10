@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Support Chat</title>
+    <script src="scripts/gucci.js" defer>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+        h2 {
+			text-align: center;
+			margin-top: 50px;
+		}
+		.container {
+			margin: auto;
+			max-width: 600px;
+			background-color: white;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px grey;
+			padding: 20px;
+			margin-top: 50px;
+		}
+		.message {
+			background-color: #e6e6e6;
+			border-radius: 5px;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+		.message.sent {
+			background-color: #4CAF50;
+			color: white;
+		}
+		.message.received {
+			background-color: white;
+			color: black;
+		}
+		.message.sent p {
+			text-align: right;
+		}
+		.message.received p {
+			text-align: left;
+		}
+		.form {
+			margin-top: 20px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		.form input[type=text] {
+			flex: 1;
+			border-radius: 5px;
+			padding: 10px;
+			border: none;
+		}
+		.form button {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			padding: 10px;
+			margin-left: 10px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h1>Support Chat</h1>
+    <h2>You are Chatting with <%=support_name%></h2>
+	<div class="container" id="container">
+        <% messages.forEach(function(msg) { %>
+            <% let mm = msg.split("-") %>
+            <% if (mm[0] == 'S') { %>
+                <div class="message received">
+                    <p><%= mm[1] %></p>
+                </div>
+            <% } %>
+            <%if (mm[0] == 'C') {%>
+                <div class="message sent">
+                    <p><%= mm[1] %></p>
+                </div>
+            <% } %>
+		<% }); %>
+            <form class="form">
+                <input type="text" placeholder="Type your message here..." id="inputt">
+			    <button type="submit">Send</button>
+            </form>
+	</div>
+</body>
+</html>

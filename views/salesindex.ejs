@@ -7,9 +7,12 @@
     <div class="header">
         <h1>Welcome <%= name.toUpperCase() %>
         </h1>
-        <form action="/logout?_method=DELETE" method="POST">
-            <button type="submit">Log out</button>
-        </form>
+        <div style="display: flex;flex-direction: row; align-items: center;">
+            <button type="submit" style="width: 150px; padding: 10px;height: 48px;margin-right: 20px;"><a href="/support" style="text-decoration: none;color: white;">Support</a></button>
+            <form action="/logout?_method=DELETE" method="POST">
+                <button type="submit">Log out</button>
+            </form>
+        </div>
     </div>
     <hr style="content: ''; height: 5px; background-color: white;">
     <div class="second">
