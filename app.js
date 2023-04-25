@@ -215,6 +215,21 @@ app.get('/customers', checkauthenticated, async (req, res) => {
     res.json(customerList);
 })
 
+app.get('/salespeople', checkauthenticated, async (req, res) => {
+    let salesList = users.filter(user => user.type === 'sales');
+    res.json(salesList)
+});
+
+app.get('/engineers', checkauthenticated, async (req, res) => {
+    let salesList = users.filter(user => user.type === 'engineer');
+    res.json(salesList)
+});
+
+app.get('/managers', checkauthenticated, async (req, res) => {
+    let salesList = users.filter(user => user.type === 'manager');
+    res.json(salesList)
+});
+
 app.delete('/logout', (req, res) => {
     if (req.user.type === "sales") {
         req.logOut(
@@ -279,6 +294,16 @@ app.post('/getprojectcus', checkauthenticated, async (req, res) => {
     d.phone = user.phone
     if (!d.hasOwnProperty("images")) d.images = false;
     res.render('view_project_customer.ejs', d)
+})
+
+app.post('/getprojectman', checkauthenticated, async (req, res) => {
+    let d = await get_project(req.body.id)
+    const user = users.find(user => user._id.toString() === d.customer)
+    d.customerName = user.name;
+    d.customerEmail = user.email
+    d.phone = user.phone
+    if (!d.hasOwnProperty("images")) d.images = false;
+    res.render('view_project_manager.ejs', d)
 })
 
 app.get("/newproject", checkauthenticated, (req, res) => {
