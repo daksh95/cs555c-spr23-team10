@@ -1,0 +1,196 @@
+body{
+font-family: sans-serif;
+padding-left: 10px;
+background-color: #f8f9ee!important;
+
+}
+
+.topnav{
+box-shadow: rgba(37,39,89,0.08) 0px 8px 8px 0;
+}
+.navbar{
+color: white;
+position: fixed;
+}
+
+.nav-masthead .nav-link {
+color: black;
+border-bottom: .25rem solid transparent;
+/* background-color: white; */
+
+
+}
+
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+border-bottom-color: black;
+}
+
+
+.nav-masthead .active {
+color: black;
+border-bottom-color: black;
+}
+
+#logout{
+    border: none;
+    background-color: white;
+    color: black;
+}
+.topnav{
+padding-top: 5px;
+background-color: white;
+
+/* margin-bottom: 150px; */
+}
+
+div.topnav hr{
+border:none;
+width: 100%;
+height: 2px;
+margin-top: 5px !important;
+border-bottom: 1px solid black !important;
+box-shadow: 0 0px 20px -20px #333 !important;
+margin: -50px auto 10px; 
+}
+
+
+.welcome{
+text-align: center;
+font-size: 50px;
+}
+
+.second{
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-direction: row;
+padding: 20px;
+}
+
+#search-project{
+border: 0.5px solid rgb(199, 199, 199);
+border-radius: 5px;
+padding: 10px;
+
+}
+
+.second button{
+padding: 5px;
+background-color: #fdd897 !important;
+width: 150px;
+color: white;
+border-radius: 20px;
+font-size: 20px;
+border-color:  #fdd897;
+
+}
+
+a:visited{
+color: white;
+}
+
+#searchbtn:hover{
+  color: black;
+}
+
+/* .form-control{
+width:10px;
+} */
+
+#project-container{
+padding: 30px;
+border-radius: 50px !important;
+}
+#project-container .card{
+/* border-top-left-radius: 50px !important; */
+border-radius: 25px !important;
+border: none;
+}
+
+.card-header{
+background-color:#247291 !important;
+border-top-right-radius: 25px !important;
+border-top-left-radius: 25px !important;
+color: white;
+text-transform: uppercase;
+}
+form.view{
+    width: 20%;
+    display: inline-block;
+    /* height */
+    
+}
+/* .btn-view{
+background-color: rgba(125, 158, 127, 0.786) !important;
+color: black !important;
+border-radius: 30px !important;
+
+} */
+
+
+
+.btn-view:hover {
+background-color:   rgba(125, 158, 127, 0.534) !important;
+color: black;
+/* border: 1px; */
+}
+
+@media screen and (max-width: 768px) {
+  
+    #project-container {
+        width: 70%;
+    }
+    form.view{
+        width: 30%;
+    }
+}
+
+/* <!-- HTML !-->
+<button class="btn-view" role="button">Button 17</button> */
+
+/* CSS */
+.btn-view {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.btn-view:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.btn-view:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
