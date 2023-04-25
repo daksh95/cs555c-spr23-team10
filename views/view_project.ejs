@@ -1,64 +1,129 @@
-<link rel="stylesheet" href="css/view_project.css">
+<!-- <link rel="stylesheet" href="css/view_project.css"> -->
+<head>
+  <link rel="stylesheet" href="css/view_project.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+
+   <!-- <style>
+        button {
+            all: unset;
+            cursor: pointer;
+          }
+          
+    </style> -->
+</head>
 <script src="scripts/vp.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<body class="body">
-    <center><h1>Solar Project</h1></center>
-<div class="bruh">
-    <h1>Project Name :</h1>
-    <h2><%= name %></h2>
-    <button type="button" onclick="displayname()">Edit</button>
-    <form action="/pnamechange" method="POST">
-    <input type="hidden" name="id" value=<%=_id%>>
-    <input name="name" type="text" style="display:none; margin-left: 20px; width: 200px;" class="namechanger" placeholder="enter new name here" required>
-    <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="namer">Update</button>
-    </form>
-</div>
-<div class="bruh">
-    <h1>Project Status :</h1>
-    <h2><%= status %></h2>
-</div>
-<div class="bruh">
-    <h1>Project Notes :</h1>
-    <h2><%= description %></h2>
-    <button type="button" onclick="displaydescription()">Edit</button>
-    <form action="/pdescriptionchange" method="POST">
-        <input type="hidden" name="id" value=<%=_id%>>
-        <input name="description" type="text" style="display:none; margin-left: 20px; width: 200px;" class="desc" placeholder="enter new description here" required>
-        <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="descriptionr">Update</button>
-    </form>
-</div>
-<div class="bruh">
-    <h1>Project id :</h1>
-    <h2><%= _id %></h2>
-</div>
-<div class="bruh">
-    <h1>Customer Name :</h1>
-    <h2><%= customerName %></h2>
-</div>
-<div class="bruh">
-    <h1>Customer Email :</h1>
-    <h2><%= customerEmail %></h2>
-</div>
-<div class="bruh">
-    <h1>Customer Phone # :</h1>
-    <h2><%= phone %></h2>
-</div>
-<div class="bruh">
-    <h1>Property Address: </h1>
-    <h2><%= propertyAddress %></h2>
-</div>
-<div class="bruh">
-    <h1>Project Size: </h1>
-    <h2><%= projectSize %> sqft</h2>
-</div>
-<div class="timeline">
-    <h1>Project Timeline: </h1>
-    <% if(timeline.length > 0) { %>
-        <table>
+<body>
+
+<div class="row topnav">
+    <div class="col col-lg-2">
+      <h3 class="float-md-start mb-0 justify-content-md-left">Project<span class="text-warning">SOLAR</span></h3>
+    </div>
+    <div class="col float-md-end mb-0 justify-content-md-right">
+          <nav class="nav nav-masthead justify-content-left float-md-end navbar-expand-sm">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <!-- <a class="nav-link " href="#">Log Out</a> -->
+          
+          </nav>
+    </div>
+  </div> 
+  <div style="padding-top: 20px;">
+
+      <h3>PROJECT PLAN</h3>
+
+      <table class="table table-bordered">
+          <!-- <thead>
             <tr>
-                <th>Status</th>
-                <th>Date</th>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
             </tr>
+          </thead> -->
+          <tbody>
+            <tr>
+              
+              <td width="200">Project Name</td>
+              <td width="500"><%= name %>
+                <button type="button" onclick="displayname()" style="float: right;">Edit</button>
+                <form action="/pnamechange" method="POST">
+                <input type="hidden" name="id" value=<%=_id%>>
+                <input name="name" type="text" style="display:none; margin-top: 10px; width: 200px;" class="namechanger" placeholder="enter new name here" required>
+                <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="namer">Update</button>
+                </form>
+                  </td>
+
+            </tr>
+            <tr>
+
+              <td>Project ID</td>
+              <td ><%= _id %></td>
+              
+
+            </tr>
+            <tr>
+
+              <td>Customer Name</td>
+              <td><%= customerName %></td>
+            </tr>
+            <tr>
+
+              <td>Customer Email ID</td>
+              <td><%= customerEmail %></td>
+
+            </tr>
+            <tr>
+
+              <td>Customer Phone Number</td>
+              <td><%= phone %></td>
+
+            </tr>
+            <tr>
+
+              <td>Property Address</td>
+              <td><%= propertyAddress %></td>
+
+            </tr>
+            <tr>
+
+              <td>Property Size</td>
+              <td><%= projectSize %> sq ft</td>
+
+            </tr>
+            <tr>
+
+              <td>Status</td>
+              <td><%= status %></td>
+
+            </tr>
+            <tr>
+
+              <td>Project Notes</td>
+              <td><%= description %>
+                <button type="button" onclick="displaydescription()" style="float: right;">Edit</button>
+                <form action="/pdescriptionchange" method="POST">
+                    <input type="hidden" name="id" value=<%=_id%>>
+                    <input name="description" type="text" style="display:none; margin-top: 10px; width: 200px;" class="desc" placeholder="enter new description here" required>
+                    <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="descriptionr">Update</button>
+                </form></td>
+
+            </tr>
+          </tbody>
+        </table>
+  </div>
+
+
+
+
+
+
+<div>
+    <h3>PROJECT MILESTONE</h3>
+    <% if(timeline.length > 0) { %>
+    <table class="table table-bordered">
+    <tbody>
+        <th>Status</th>
+        <th>Date</th>
         <% for (let i = 0; i < timeline.length; i++) { %>
             <tr>
                 <td><%= timeline[i].status %></td>
@@ -66,14 +131,15 @@
                 
             </tr> 
             <% } %>
-        </table>
+      </tbody>
+    </table>
     <% } %>
 </div>
 <div class="bruh">
     <h1>Images: </h1>
     <% if(images && images.length > 0) { %>
         <% for (let i = 0; i < images.length; i++) { %>
-        <img src="<%= images[i] %>" alt="<%= images[i] %>">
+        <img src="<%= images[i] %>" alt="<%= images[i] %>" height="320px" width="640px">
         <% } %>
     <% } else { %>
         <h2>No images uploaded</h2>
