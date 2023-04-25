@@ -18,7 +18,7 @@ fetch('http://localhost:6969/projects')
     .then((data) => {
         const projectContainer = document.getElementById("project-container")
         for (let project of data) {
-            if (project.status.toLowerCase() === "engineering") {
+            if (project.status.toLowerCase() === "engineering" || project.status.toLowerCase() === "pending manager review") {
                 const projectDiv = document.createElement("div");
                 projectDiv.className = "project"
                 projectDiv.innerHTML =
