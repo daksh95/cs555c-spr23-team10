@@ -23,19 +23,25 @@ fetch('http://localhost:6969/projects')
                 projectDiv.className = "project"
                 projectDiv.innerHTML =
                     `
-            <div>
-            <h2>${project.name}</h2>
-            <p>Desc : ${project.description}</p>
-            <!-- <p>address: ${project.customerAddress}</p> -->
-            <p>customer: ${project.customerName} - ${project.customer}</p>
-            </div>
-            <div>
-            <h2>Status: ${project.status}</h2>
-            <form action="/getprojecteng" method="POST">
-            <input type="hidden" name="id" value=${project._id}>
-            <button type="submit" id="view-button">View</button>
-            </form>
-            </div>
+                    <div class="col" style="width: 50 rem;">
+                    <div class="card mb-4 shadow">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">${project.name}</h4>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title pricing-card-title">Status: <small class="text-muted fw-light">${project.status}</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                            <li>Description : ${project.description}</li>
+                            <li>Customer: ${project.customerName}</li>
+                        
+                            </ul>
+                            <form action="/getprojectman" method="POST" class="view">
+                            <input type="hidden" name="id" value=${project._id}>
+                            <button type="submit" class="w-80 btn  btn-view" >View</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             `;
                 projectContainer.appendChild(projectDiv);
             }
