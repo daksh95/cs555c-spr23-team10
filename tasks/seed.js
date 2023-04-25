@@ -1,7 +1,14 @@
 import { dbConnection, closeConnection } from '../config/mongoConnection.js';
 import create_user from '../data_handler/create_user.js';
-import create_project from '../data_handler/create_p.js';
 import create_chat from '../data_handler/create_chat.js';
+import projectsDb from '../config/mongoCollections.js';
+
+const create_project = async (ob) => {
+  const db = await dbConnection();
+  const projectCollection = await projectsDb();
+  let project = await projectCollection.insertOne(ob);
+  return project;
+}
 
 const statusMap = {
   0: {status: "Created", next: "manager"},
