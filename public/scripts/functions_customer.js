@@ -34,7 +34,7 @@ fetch('http://localhost:6969/projects')
                 <li>Customer: ${project.customerName}</li>
             
                 </ul>
-                <form action="/getprojectman" method="POST" class="view">
+                <form action="/getprojectcus" method="POST" class="view">
                 <input type="hidden" name="id" value=${project._id}>
                 <button type="submit" class="w-80 btn  btn-view" >View</button>
                 </form>
