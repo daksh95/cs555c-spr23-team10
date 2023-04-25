@@ -10,6 +10,18 @@
 <div class="bruh">
     <h1>Project Status :</h1>
     <h2><%= status %></h2>
+    <% if (canChangeStatus) { %>
+        <button type="button" onclick="displaystatus()">Edit</button>
+        <form action="/pstatuschange" method="POST">
+        <input type="hidden" name="id" value=<%=_id%>>
+        <input type="hidden" name="currStatusId" value=<%= statusId %>>
+        <select name="status" class="statuschanger" style="display:none; margin-left: 20px; width: 200px;">
+            <option value=<%= statusId %>><%= status %></option>
+            <option value=<%= nextStatusId %>><%= nextStatus %></option>
+        </select>
+        <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="statuser">Update</button>
+        </form>
+    <% } %>
 </div>
 <div class="bruh">
     <h1>Project Notes :</h1>
@@ -45,14 +57,12 @@
         <table>
             <tr>
                 <th>Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Date</th>
             </tr>
         <% for (let i = 0; i < timeline.length; i++) { %>
             <tr>
                 <td><%= timeline[i].status %></td>
                 <td><%= timeline[i].start %></td>
-                <td><%= timeline[i].end %></td>
             </tr> 
             <% } %>
         </table>
@@ -60,12 +70,12 @@
 </div>
 <div class="bruh">
     <h1>Images: </h1>
-    <% if(images) { %>
+    <% if(images && images.length > 0) { %>
         <% for (let i = 0; i < images.length; i++) { %>
         <img src="<%= images[i] %>" alt="<%= images[i] %>">
         <% } %>
     <% } else { %>
-        <p>No images uploaded yet</p>
+        <h2>No images uploaded</h2>
     <% } %>
 </div>
 <br><br>
