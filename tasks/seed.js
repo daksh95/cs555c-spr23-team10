@@ -177,18 +177,18 @@ for (let user of users) {
     support_list.push({name:user.name,id:userObj.insertedId.toString()});
     continue
   }
-  if (user.type === "customer") {
+  else if (user.type === "customer") {
     let s = support_list[Math.floor(Math.random() * 2)]
     userObj = await create_user(user);
     id_list.push(userObj.insertedId.toString());
     chat_list.push({support_name:s.name,support_id:s.id,customer:userObj.insertedId.toString()})
     continue
   }
-  if (user.type === "manager") {
+  else if (user.type === "manager") {
     userObj = await create_user(user);
     manager_list.push(userObj.insertedId.toString());
   }
-  userObj = await create_user(user);
+  else userObj = await create_user(user);
 }
 
 const cust_count = id_list.length;
