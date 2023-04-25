@@ -1,0 +1,162 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+
+body {
+
+  /* padding-bottom: 3rem; */
+  /* font-family: "Times New Roman", Georgia, 'Times New Roman', Times, serif !important; */
+  color: #5a5a5a;
+  animation: fadeInAnimation ease 3s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.nav{
+  /* background-color: #283149; */
+  text-decoration: #fff;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+.navbar{
+  color: white;
+  position: fixed;
+}
+
+
+.nav-masthead .nav-link {
+  color: black;
+  border-bottom: .25rem solid transparent;
+  background-color: white;
+
+
+}
+.nright{
+  margin-left:10rem;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: black;
+}
+
+
+.nav-masthead .active {
+  color: black;
+  border-bottom-color: black;
+}
+.solutions{
+  background-color:  rgba(255, 191, 0, 0.428);
+  box-shadow: 10px 10px 5px rgba(128, 53, 0, 0.864);
+  /* font-family: serif; */
+  border-radius: 50px 50px 50px 50px;
+}
+
+.topnav{
+  padding-top: 5px;
+  margin-bottom: 150px;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /*Space out the Bootstrap <hr> more */
+  /* padding-top: 2px; */
+  padding-bottom: 2px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading1 {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+  padding-top: 2px;
+  
+
+}
+.fh1{
+  padding-left: 50px;
+}
+
+.fh2{
+  padding-right: 100px;
+}
+
+.lead1{
+  padding-left: 50px;
+}
+
+/* .lead2{
+  /* padding-right: 100px !important; 
+} */
+
+.l2{
+  float: right !important;
+}
+
+.bd-placeholder-img{
+  padding: 10px;
+  
+}
+
+.img-div1{
+  padding-left: 100px !important; 
+  /* float: left !important;  */
+  padding-top:10px;
+  padding-bottom: 20px;
+}
+.img-div2{
+  padding-right: 100px; 
+  padding-top:10px;
+/* padding-top: 50px; */
+  padding-bottom: 20px;
+}
+
+.row{
+  /* padding-right: calc(var(--bs-gutter-x) * .5); */ 
+    /* padding-left: calc(var(--bs-gutter-x) * .5); */
+    /* margin-top: var(--bs-gutter-y);*/
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 5rem;
+  }
+}
+
+.footer{
+  padding-top: 100px !important;
+}

@@ -16,12 +16,6 @@
 <div class="bruh">
     <h1>Project Status :</h1>
     <h2><%= status %></h2>
-    <button type="button" onclick="displaystatus()">Edit</button>
-    <form action="/pstatuschange" method="POST">
-    <input type="hidden" name="id" value=<%=_id%>>
-    <input name="status" type="text" style="display:none; margin-left: 20px; width: 200px;" class="statuschanger" placeholder="enter new status here" required>
-    <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="statuser">Update</button>
-    </form>
 </div>
 <div class="bruh">
     <h1>Project Notes :</h1>
@@ -57,15 +51,35 @@
     <h1>Project Size: </h1>
     <h2><%= projectSize %> sqft</h2>
 </div>
+<div class="timeline">
+    <h1>Project Timeline: </h1>
+    <% if(timeline.length > 0) { %>
+        <table>
+            <tr>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        <% for (let i = 0; i < timeline.length; i++) { %>
+            <tr>
+                <td><%= timeline[i].status %></td>
+                <td><%= timeline[i].start %></td>
+                
+            </tr> 
+            <% } %>
+        </table>
+    <% } %>
+</div>
 <div class="bruh">
-    <% if(images) { %>
+    <h1>Images: </h1>
+    <% if(images && images.length > 0) { %>
         <% for (let i = 0; i < images.length; i++) { %>
         <img src="<%= images[i] %>" alt="<%= images[i] %>">
         <% } %>
     <% } else { %>
-        <p>No images uploaded yet</p>
+        <h2>No images uploaded</h2>
     <% } %>
 </div>
+<br><br>
 <form action="/deleteproject" method="POST">
     <input type="hidden" name="id" value=<%=_id%>>
     <button type="submit">Delete</button>

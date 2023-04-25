@@ -1,33 +1,39 @@
 <link rel="stylesheet" href="css/view_project.css">
-<script src="scripts/vp_eng.js" defer></script>
+<script src="scripts/vp.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <body class="body">
     <center><h1>Solar Project</h1></center>
 <div class="bruh">
     <h1>Project Name :</h1>
     <h2><%= name %></h2>
+    <button type="button" onclick="displayname()">Edit</button>
+    <form action="/pnamechange" method="POST">
+    <input type="hidden" name="id" value=<%=_id%>>
+    <input name="name" type="text" style="display:none; margin-left: 20px; width: 200px;" class="namechanger" placeholder="enter new name here" required>
+    <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="namer">Update</button>
+    </form>
 </div>
 <div class="bruh">
     <h1>Project Status :</h1>
     <h2><%= status %></h2>
     <% if (canChangeStatus) { %>
-        <button type="button" onclick="displaystatus()">Edit</button>
-        <form action="/pstatuschange" method="POST">
-        <input type="hidden" name="id" value=<%=_id%>>
-        <input type="hidden" name="currStatusId" value=<%= statusId %>>
-        <select name="status" class="statuschanger" style="display:none; margin-left: 20px; width: 200px;">
-            <option value=<%= statusId %>><%= status %></option>
-            <option value=<%= nextStatusId %>><%= nextStatus %></option>
-        </select>
-        <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="statuser">Update</button>
-        </form>
+    <button type="button" onclick="displaystatus()">Edit</button>
+    <form action="/pstatuschange" method="POST">
+    <input type="hidden" name="id" value=<%=_id%>>
+    <input type="hidden" name="currStatusId" value=<%= statusId %>>
+    <select name="status" class="statuschanger" style="display:none; margin-left: 20px; width: 200px;">
+        <option value=<%= statusId %>><%= status %></option>
+        <option value=<%= nextStatusId %>><%= nextStatus %></option>
+    </select>
+    <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="statuser">Update</button>
+    </form>
     <% } %>
 </div>
 <div class="bruh">
     <h1>Project Notes :</h1>
     <h2><%= description %></h2>
     <button type="button" onclick="displaydescription()">Edit</button>
-    <form action="/pdescriptionchangeeng" method="POST">
+    <form action="/pdescriptionchange" method="POST">
         <input type="hidden" name="id" value=<%=_id%>>
         <input name="description" type="text" style="display:none; margin-left: 20px; width: 200px;" class="desc" placeholder="enter new description here" required>
         <button type="submit" style="display:none; margin-left: 20px; width: 70px;" id="descriptionr">Update</button>
@@ -93,4 +99,8 @@
         <input type="submit">
     </form>
 </div>
-</body>
+<form action="/deleteproject" method="POST">
+    <input type="hidden" name="id" value=<%=_id%>>
+    <button type="submit">Delete</button>
+</form>
+</body> 

@@ -1,0 +1,114 @@
+
+
+body{
+animation: fadeInAnimation ease 3s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+animation: fadeInAnimation ease 3s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+background-image: url("../img/homebg.jpeg") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+/* .home{
+  background-image: url("img/homebg.jpeg");
+} */
+
+/* Custom default button */
+.lm-btn{
+  background-color: rgba(255, 191, 0, 0.679)      !important;
+  color: black !important;
+  border:none !important;
+}
+.btn-light,
+.btn-light:hover,
+.btn-light:focus {
+  /* color: white; */
+  text-shadow: none;/* Prevent inheritance from `body` */
+  transform: scale(2);
+
+}
+
+.btn{
+  transition: all 0.3s linear;
+
+  /* transform: scale(1.5);
+}
+
+.nav{
+  /* background-color: #283149; */
+  /* text-decoration: #fff; */
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+.navbar{
+  color: white;
+  position: fixed;
+}
+
+
+
+/*
+ * Base structure
+ */
+
+/* body {
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5); 
+  margin: 0;
+  
+}*/
+
+
+
+.nav-masthead .nav-link {
+  color: black;
+  border-bottom: .25rem solid transparent;
+  /* background-color: white; */
+
+
+}
+
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: black;
+}
+
+
+.nav-masthead .active {
+  color: black;
+  border-bottom-color: black;
+}
+
+
+.cover-container {
+  max-width: 100em;
+  
+}
+
+.topnav{
+  padding-top: 5px;
+  margin-bottom: 150px;
+}
+
+.learnmorebtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-container {
+  max-width:48%;
+}
+
+  

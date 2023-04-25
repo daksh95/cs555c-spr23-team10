@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="css/new_project.css">
 <script type="module" src="scripts/fetch_cust.js" defer></script>
+<script type="module" src="scripts/fetch_managers.js" defer></script>
 <body class="body">
     <div class="flexing">
         <div class="headers">
@@ -31,6 +32,13 @@
                     </select>
                 </div>
                 <div style="width: 80%; padding: 20px;">
+                    <label for="manager">Manager</label><br>
+                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
+                    <select name="manager" id="manager-dropdown">
+                        <option value="none" selected disabled hidden>Select a manager</option>
+                    </select>
+                </div>
+                <div style="width: 80%; padding: 20px;">
                     <label for="propertyAddress">Property Address</label><br>
                     <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
                     <input type="text" id="propertyAddress" name="propertyAddress" placeholder="Property Address" required>
@@ -40,11 +48,7 @@
                     <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
                     <input type="text" id="projectSize" name="projectSize" placeholder="Project Size" value="0" required>
                 </div>
-                <div style="width: 80%; padding: 20px;">
-                    <label for="status">Status</label><br>
-                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
-                    <input type="text" id="status" name="status" placeholder="Your status" required>
-                </div>
+                
                 <br>
                 <button type="submit">Create</button>
             </form>

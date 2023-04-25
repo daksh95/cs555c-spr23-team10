@@ -18,6 +18,13 @@ import namechange from './data_handler/changen_p.js';
 import statuschange from './data_handler/changes_p.js';
 import descriptionchange from './data_handler/changed_p.js';
 import uploadpictures from './data_handler/upload_picture.js';
+import get_chat from './data_handler/chat.js';
+import get_chat1 from './data_handler/chat_1.js';
+import add_chat from './data_handler/msg.js';
+import add_chat1 from './data_handler/msg_1.js';
+import get_msg from './data_handler/last_msg.js';
+import get_msg_s from './data_handler/last_msg_s.js';
+import statusMap from './data_handler/statusMap.js';
 
 
 dotenv.config();
@@ -44,6 +51,7 @@ const upload = multer( {storage: multerStorage, fileFilter: multerFilter });
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(flash());
 app.use(methodoverride('_method'));
 app.use(express.static("public"));
@@ -63,7 +71,7 @@ initializepassport(
 
 // landing end point
 app.get('/',checknotauthenticated,(req,res)=>{
-    res.render("landing.ejs")
+    res.render("home.ejs")
 })
 
 // Login end points
@@ -125,7 +133,7 @@ app.get('/home',checkauthenticated,(req,res)=>{
 })
 
 app.get('/register', checknotauthenticated, (req, res) => {
-    res.render('register.ejs')
+        return res.render('register.ejs')
 })
 
 app.post('/register', checknotauthenticated, async (req, res) => {
@@ -144,6 +152,47 @@ app.post('/register', checknotauthenticated, async (req, res) => {
     catch {
         res.redirect("/register")
         console.log("error while hashing")
+    }
+})
+
+app.get('/support',checkauthenticated,async (req,res)=>{
+    if (req.user.type === "customer") {
+    let dd = await get_chat(req.user._id.toString())
+    res.render('support.ejs',dd)
+    }
+    if(req.user.type === "sales"){
+        let dd = await get_chat1(req.user._id.toString())
+        res.render('support_s.ejs',dd)
+    }
+})
+
+app.post("/cs",checkauthenticated,async (req,res)=>{
+    await add_chat(req.user._id.toString(),req.body.msg)
+    res.sendStatus(200)
+})
+
+app.post("/ss",checkauthenticated,async (req,res)=>{
+    await add_chat1(req.user._id.toString(),req.body.msg)
+    res.sendStatus(200)
+})
+
+app.post("/checkmsg",checkauthenticated,async(req,res)=>{
+    let l = await get_msg(req.user._id.toString())
+    if (l.slice(-1)[0].split("-")[1] === req.body.last_msg){
+        return res.sendStatus(400)
+    }
+    else{
+        return res.sendStatus(200)
+    }
+})
+
+app.post("/checkmsgg",checkauthenticated,async(req,res)=>{
+    let l = await get_msg_s(req.user._id.toString())
+    if (l.slice(-1)[0].split("-")[1] === req.body.last_msg){
+        return res.sendStatus(400)
+    }
+    else{
+        return res.sendStatus(200)
     }
 })
 
@@ -166,6 +215,21 @@ app.get('/customers', checkauthenticated, async (req, res) => {
     let customerList = users.filter(user => user.type === 'customer');
     res.json(customerList);
 })
+
+app.get('/salespeople', checkauthenticated, async (req, res) => {
+    let salesList = users.filter(user => user.type === 'sales');
+    res.json(salesList)
+});
+
+app.get('/engineers', checkauthenticated, async (req, res) => {
+    let salesList = users.filter(user => user.type === 'engineer');
+    res.json(salesList)
+});
+
+app.get('/managers', checkauthenticated, async (req, res) => {
+    let salesList = users.filter(user => user.type === 'manager');
+    res.json(salesList)
+});
 
 app.delete('/logout', (req, res) => {
     if (req.user.type === "sales") {
@@ -209,7 +273,7 @@ app.post('/getproject', checkauthenticated, async (req, res) => {
     d.customerName = user.name;
     d.customerEmail = user.email
     d.phone = user.phone
-    if (!d.hasOwnProperty("images")) d.images = false;
+    if (!d.hasOwnProperty("images")) d.images = [];
     res.render('view_project.ejs', d)
 })
 
@@ -219,7 +283,16 @@ app.post('/getprojecteng', checkauthenticated, async (req, res) => {
     d.customerName = user.name;
     d.customerEmail = user.email
     d.phone = user.phone
-    if (!d.hasOwnProperty("images")) d.images = false;
+
+    const currStatusId = d.statusId;
+    d.canChangeStatus = false;
+    if (statusMap[currStatusId].next === 'engineer') {
+        d.nextStatusId = currStatusId+1;
+        d.nextStatus = statusMap[currStatusId+1].status;
+        d.canChangeStatus = true;
+    }
+
+    if (!d.hasOwnProperty("images")) d.images = [];
     res.render('view_project_eng.ejs', d)
 })
 
@@ -229,8 +302,36 @@ app.post('/getprojectcus', checkauthenticated, async (req, res) => {
     d.customerName = user.name;
     d.customerEmail = user.email
     d.phone = user.phone
-    if (!d.hasOwnProperty("images")) d.images = false;
+
+    const currStatusId = d.statusId;
+    d.canChangeStatus = false;
+    if (statusMap[currStatusId].next === 'customer') {
+        d.nextStatusId = currStatusId+1;
+        d.nextStatus = statusMap[currStatusId+1].status;
+        d.canChangeStatus = true;
+    }
+
+    if (!d.hasOwnProperty("images")) d.images = [];
     res.render('view_project_customer.ejs', d)
+})
+
+app.post('/getprojectman', checkauthenticated, async (req, res) => {
+    let d = await get_project(req.body.id)
+    const user = users.find(user => user._id.toString() === d.customer);
+    d.customerName = user.name;
+    d.customerEmail = user.email;
+    d.phone = user.phone;
+
+    const currStatusId = d.statusId;
+    d.canChangeStatus = false;
+    if (statusMap[currStatusId].next === 'manager') {
+        d.nextStatusId = currStatusId+1;
+        d.nextStatus = statusMap[currStatusId+1].status;
+        d.canChangeStatus = true;
+    }
+
+    if (!d.hasOwnProperty("images")) d.images = false;
+    res.render('view_project_manager.ejs', d);
 })
 
 app.get("/newproject", checkauthenticated, (req, res) => {
@@ -238,34 +339,33 @@ app.get("/newproject", checkauthenticated, (req, res) => {
 })
 
 app.post('/createproject', checkauthenticated, async (req, res) => {
-    console.log(req.body)
     let success = await create_project(req.body)
-    res.redirect("/dashboard");
+    res.redirect("/");
 })
 
 app.post('/deleteproject', checkauthenticated, async (req, res) => {
     let s = await delete_project(req.body.id)
-    res.redirect("/dashboard")
+    res.redirect("/")
 })
 
 app.post('/pnamechange', checkauthenticated, async (req, res) => {
     let a = await namechange(req.body.id,req.body.name)
     if (a !== null){
-        res.redirect("/dashboard")
+        res.redirect("/")
     }
 })
 
 app.post('/pstatuschange', checkauthenticated, async (req, res) => {
-    let a = await statuschange(req.body.id,req.body.status)
+    let a = await statuschange(req.body.id,req.body.currStatusId,req.body.status)
     if (a !== null){
-        res.redirect("/dashboard")
+        res.redirect("/")
     }
 })
 
 app.post('/pdescriptionchange', checkauthenticated, async (req, res) => {
     let a = await descriptionchange(req.body.id,req.body.description)
     if (a !== null){
-        res.redirect("/dashboard")
+        res.redirect("/")
     }
 })
 

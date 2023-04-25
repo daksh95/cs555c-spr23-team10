@@ -27,15 +27,18 @@
     flex-direction: row;
     align-items: center;
 }
+
 .bruh h1{
     margin-left: 20px;
     font-weight: bold;
 }
+
 .bruh h2{
     margin-left: 20px;
     margin-top: 35px;
     font-size: 26px;
 }
+
 .bruh button{
     margin-left: 40px;
     margin-top: 15px;
@@ -54,4 +57,22 @@
     border: 2px;
     border-color: white;
     border-style: solid;
+}
+
+.timeline {
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.timeline h1 {
+    font-weight: bold;
+}
+
+.timeline table, .timeline th, .timeline td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+.timeline th, .timeline td {
+    padding: 15px;
 }

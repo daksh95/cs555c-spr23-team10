@@ -1,35 +1,52 @@
-<link rel="stylesheet" href="css/login_sales.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-in Page</title>
+    <link rel="stylesheet" href="css/cust_login.css">
+</head>
+<body>
 
-<body class="body">
-    <div class="flexing">
-        <div class="headers">
-            <center>
-                <h1 class="teamlogo">Scrum Lords</h1>
-            </center>
-            <center>
-                <h1 class="logo">Project Solar</h1>
-            </center>
+    <section>
+
+        <div class = "imgBx">
+            <img src="img/login-solar-panels.jpg">
         </div>
-        <div class="loginbox">
-            <h1>Sales Login Page </h1>
-            <form action="/saleslogin" method="POST">
-                <div style="width: 80%; padding: 10px;">
-                    <label for="email">Your E Mail</label>
-                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
-                    <input type="text" id="email" name="email" placeholder="Your Registered email" required>
-                </div>
-                <div style="width: 80%; padding: 20px;">
-                    <label for="password">Your Password</label><br>
-                    <br style="content: ' '; margin: 2em;display: block;font-size: 24%;">
-                    <input type="text" id="password" name="password" placeholder="Your password" required>
-                </div>
-                <% if (messages.error){%>
-                    <%= messages.error %>
-                        <% } %>
-                <br>
-                <button type="submit">Login</button>
-            </form>
-            <!-- <a href="/register">Register</a> -->
+
+        <div class = "contentBx">
+            <div class = "formBx">
+
+                <h2>Sales Login</h2>
+                <form method="POST" action="/saleslogin">
+                    <div class = "inputbx">
+                        <span>Username</span>
+                        <input type="text" name = "email" placeholder="Email" required>
+                    </div>
+
+                    <div class = "inputbx">
+                        <span>Password</span>
+                        <input type="password" name = "password" placeholder="Password" required>
+                    </div>
+                    <% if (messages.error){%>
+                        <%= messages.error %>
+                            <% } %>
+
+                    <div class="inputbx">
+                        <input type="submit" value="Sign In">
+                    </div>
+
+
+
+
+                </form>
+
+            </div>
+
         </div>
-    </div>
+
+    </section>
+    
 </body>
+</html>
