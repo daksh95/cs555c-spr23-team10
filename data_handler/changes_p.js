@@ -14,7 +14,7 @@ export default async function statuschange(id,currStatusId,newStatusId){
     newStatusId = parseInt(newStatusId);
     const newStatus = statusMap[newStatusId].status;
     const date = new Date();
-    const date_string = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+    const date_string = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
     let projectTimeline = project.timeline;
     projectTimeline[currStatusId].end = date_string;
     projectTimeline.push({statusId: newStatusId, status: newStatus, start: date_string});
