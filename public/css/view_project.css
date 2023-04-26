@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+/* @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 .body {
     background: #171717;
@@ -75,4 +75,41 @@
 
 .timeline th, .timeline td {
     padding: 15px;
-}
+} */
+
+body{
+    font-family: sans-serif;
+    padding-left: 10px;
+    background-color: #f8f9ee!important;
+    
+    }
+    
+    .topnav{
+    box-shadow: rgba(37,39,89,0.08) 0px 8px 8px 0;
+    padding-top: 5px;
+    background-color: white;
+    }
+    .navbar{
+    color: white;
+    position: fixed;
+    }
+    
+    .nav-masthead .nav-link {
+    color: black;
+    border-bottom: .25rem solid transparent;
+    /* background-color: white; */
+    
+    
+    }
+    
+    
+    .nav-masthead .nav-link:hover,
+    .nav-masthead .nav-link:focus {
+    border-bottom-color: black;
+    }
+    
+    
+    .nav-masthead .active {
+    color: black;
+    border-bottom-color: black;
+    }
